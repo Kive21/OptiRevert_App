@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
         title: Text('OptiRevert'),
       ),
       body: DashboardScreen(),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
     );
   }
 }
