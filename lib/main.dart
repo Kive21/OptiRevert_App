@@ -13,7 +13,7 @@ class OptiRevertApp extends StatelessWidget {
     return MaterialApp(
       title: 'OptiRevert',
       theme: ThemeData(
-        primarySwatch: Color.fromRGBO(203, 100, 60, 1.0),
+        colorScheme: ColorScheme.fromSwatch().copyWith(primary: const Color(0xFFCB643C)),
       ),
       home: HomeScreen(),
     );
