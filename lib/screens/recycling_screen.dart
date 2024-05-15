@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AnalyticsScreen extends StatelessWidget {
+class RecyclingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Analytics'),
+        title: const Text('Recycling Coordination'),
       ),
       body: const Center(
-        child: Text('Analytics Data Here'),
+        child: Text('Recycling Coordination Details Here'),
       ),
     );
   }
