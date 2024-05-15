@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
-import 'home_screen.dart';
+import 'package:opti_revert_app/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,29 +9,28 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  late VideoPlayerController _controller;
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/videos/OptiRevert_video_logo.mp4')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized
-        setState(() {});
-        _controller.play();
-      });
-
-    _controller.setLooping(false);
-
-    _controller.addListener(() {
-      if (_controller.value.position == _controller.value.duration) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
-      }
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1500),
+    );
+    _animation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.bounceOut),
+    );
+    _controller.forward();
+    Timer(Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
     });
   }
+
 
   @override
   void dispose() {
@@ -42,13 +41,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 234, 181, 160),
       body: Center(
-        child: _controller.value.isInitialized
-            ? AspectRatio(
-                aspectRatio: _controller.value.aspectRatio,
-                child: VideoPlayer(_controller),
-              )
-            : const CircularProgressIndicator(),
+        child: AnimatedBuilder(
+          animation: _animation,
+          builder: (BuildContext context, Widget? child) {
+            return Transform.scale(
+              scale: _animation.value,
+              child: Image.asset(
+                'assets/images/OptiRevert_image_logo.png', // Replace 'logo.png' with your image file
+                width: 200,
+                height: 200,
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,30 +1,24 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:opti_revert_app/main.dart';
+import 'package:opti_revert_app/screens/home_screen.dart';
+import 'package:opti_revert_app/screens/dashboard_screen.dart';
+import 'package:opti_revert_app/screens/splash_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Test Home Screen Widgets', (WidgetTester tester) async {
+    // Build the widget tree
+    await tester.pumpWidget(const MaterialApp(
+      home: SplashScreen(),
+    ));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Delay for splash screen animation
+    await tester.pump(const Duration(seconds: 3));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify the presence of widgets
+    expect(find.text('OptiRevert'), findsOneWidget); // App title
+    expect(find.byType(AppBar), findsOneWidget); // App bar
+    expect(find.byType(Drawer), findsOneWidget); // Drawer
+    expect(find.byType(DashboardScreen), findsOneWidget); // Dashboard screen
+    // Add more widget tests as needed
   });
 }
