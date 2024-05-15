@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const OptiRevertApp());
@@ -15,7 +15,7 @@ class OptiRevertApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(primary: const Color(0xFFCB643C)),
       ),
-      home: HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }
