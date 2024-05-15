@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/OptiRevert_video_logo.mp4')
+    _controller = VideoPlayerController.asset('assets/videos/OptiRevert_video_logo.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized
         setState(() {});
