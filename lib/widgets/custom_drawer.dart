@@ -6,17 +6,15 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: const Color(0xFFCB643C),
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           const DrawerHeader(
-            decoration: BoxDecoration(
-              color: const Color(0xFFCB643C),
-            ),
             child: Text(
               'Menu',
               style: TextStyle(
-                color: const Color(0xFF231F20),
+                color: Color(0xFF231F20),
                 fontSize: 24,
               ),
             ),
